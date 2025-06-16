@@ -1,22 +1,28 @@
 <!-- recaptcha.html -->
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Google reCAPTCHA</title>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script>
-      function onSubmit(token) {
-        window.ReactNativeWebView.postMessage(token);
-      }
-    </script>
-  </head>
-  <body>
-    <form>
-      <div
-        class="g-recaptcha"
-        data-sitekey="6Lc2q2IrAAAAAF2ksf2WhaYHwgLGzVP4S72hFYyT"
-        data-callback="onSubmit"
-      ></div>
-    </form>
-  </body>
+<head>
+  <title>Google reCAPTCHA</title>
+  <script src="https://www.google.com/recaptcha/api.js?render=explicit" async defer></script>
+  <style>
+    body { margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; height: 100vh; }
+    .g-recaptcha { transform: scale(1.2); }
+  </style>
+  <script>
+    function onRecaptchaLoad() {
+      grecaptcha.render('recaptcha-container', {
+        sitekey: '6Lc2q2IrAAAAAF2ksf2WhaYHwgLGzVP4S72hFYyT',
+        callback: onSubmit,
+        size: 'normal'
+      });
+    }
+
+    function onSubmit(token) {
+      window.ReactNativeWebView.postMessage(token);
+    }
+  </script>
+</head>
+<body onload="onRecaptchaLoad()">
+  <div id="recaptcha-container"></div>
+</body>
 </html>
