@@ -1,0 +1,22 @@
+<!-- recaptcha.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google reCAPTCHA</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+      function onSubmit(token) {
+        window.ReactNativeWebView.postMessage(token);
+      }
+    </script>
+  </head>
+  <body>
+    <form>
+      <div
+        class="g-recaptcha"
+        data-sitekey="6Lc2q2IrAAAAAF2ksf2WhaYHwgLGzVP4S72hFYyT"
+        data-callback="onSubmit"
+      ></div>
+    </form>
+  </body>
+</html>
